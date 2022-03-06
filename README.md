@@ -4,6 +4,26 @@ Repository for matrix coding Assignment
 # Description
 This repository contains everything that is needed to setup a Matrix server using this repository: https://github.com/spantaleev/matrix-docker-ansible-deploy
 
+# Approach
+
+Based on the Notion page, I felt like the best approach was to get this working on a small scale (single EC2 instance) so that I had a strong understanding of the requirements, the intricacies of the process, and the details of each of the components.   The files in this repository should allow anyone to spin up the required resources in AWS to host a matrix server. 
+
+I initially went through the process manually (primarily through the AWS console) to make sure everything was setup properly.  After successfully instantiating a Matrix server, creating a user, and spinning up a test channel, I moved forward with automating much of the deployment process (can follow the instructions below on deployment).
+
+After gaining a better understanding of what was required for a single server, this allowed me to extrapolate and come up with a proposed architecture for a low latency, scalable infrastructure setup for one or multiple matrix servers (See the [Proposed Architecture](#proposed-architecture) section below).
+
+# Proposed Architecture
+
+Below is a diagram of the architecture I'm proposing for a low latency, scalable setup for one or multiple Matrix servers.
+
+![image info](./matrix-infra.jpg)
+
+The infrastructure would be composed of an [EC2 Autoscaling Group](https://console.aws.amazon.com/ec2autoscaling/) based on a standard [EC2 template](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#CreateTemplate:autoScalingGuidance=true) similar to the one used in this repository.  We would additionally want to automate the process of using ansible to install matrix on each of the EC2 images in the Autoscaling group.
+
+This would enable scaling up and down servers based on thresholds for key metrics (e.g. CPU usage).  It would also ensure maximum liveness anytime usage spikes.
+
+We would then [attach an Elastic Load Balancer to our EC2 Autoscaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html) to the EC2 Autoscaling group.  This will automate the process of routing traffic to the servers to the most optimal instances/availability zones that will in turn result in low latency for users/devices.
+
 # AWS Infrastructure Setup Instructions
 
 1. Clone the repository above to your computer
