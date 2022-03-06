@@ -1,4 +1,4 @@
-# matrix-project
+# Matrix Project
 Repository for matrix coding Assignment
 
 # Description
