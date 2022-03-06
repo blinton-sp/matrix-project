@@ -42,17 +42,17 @@ This is important to make sure that we are using python3 for ansible
 
 Can navigate to https://element.matrix-sandbox.net/#/login to create a user on the server I setup (I will probably be shutting this down in a week or so just a heads up).
 
-![image info](./matrix_login.png)
+![image info](./images/matrix_login.png)
 
-![image info](./matrix_home.png)
+![image info](./images/matrix_home.png)
 
-![image info](./matrix_test_space.png)
+![image info](./images/matrix_test_space.png)
 
 # Proposed Architecture
 
 Below is a diagram of the architecture I'm proposing for a low latency, scalable setup for one or multiple Matrix servers.
 
-![image info](./matrix-infra.jpg)
+![image info](./images/matrix-infra.jpg)
 
 The infrastructure would be composed of an [EC2 Autoscaling Group](https://console.aws.amazon.com/ec2autoscaling/) based on a standard [EC2 template](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#CreateTemplate:autoScalingGuidance=true) similar to the one used in this repository.  We would additionally want to automate the process of using ansible to install matrix on each of the EC2 images in the Autoscaling group.
 
