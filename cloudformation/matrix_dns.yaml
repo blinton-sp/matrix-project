@@ -1,0 +1,159 @@
+AWSTemplateFormatVersion: 2010-09-09
+Description: Infrastructure for Matrix DNS Server. Creates Route 53 record set.
+Parameters:
+  HostedZoneId:
+    Description: 'The Route 53 hosted zone ID to create the domain in.'
+    Type: String
+  DomainName:
+    Description: 'The sub-domain name of the website.  This sub-domain will be prepended your specified Hosted Zone (e.g. matrix in matrix.example.com).'
+    Type: String
+
+Resources:
+
+  ElementRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: 
+        Fn::Join: 
+        - ""
+        - - 'element.'
+          - !Ref DomainName
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join: 
+        - ""
+        - - 'matrix.'
+          - !Ref DomainName
+  DimensionRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name:
+        Fn::Join: 
+        - ""
+        - - 'dimension.'
+          - !Ref DomainName
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join: 
+        - ""
+        - - 'matrix.'
+          - !Ref DomainName
+  StatsRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name:
+        Fn::Join: 
+        - ""
+        - - 'stats.'
+          - !Ref DomainName
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join: 
+        - ""
+        - - 'matrix.'
+          - !Ref DomainName
+  GonebRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name:
+        Fn::Join: 
+        - ""
+        - - 'goneb.'
+          - !Ref DomainName
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join: 
+        - ""
+        - - 'matrix.'
+          - !Ref DomainName
+  SygnalRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: 
+        Fn::Join: 
+        - ""
+        - - 'sygnal.'
+          - !Ref DomainName
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join: 
+        - ""
+        - - 'matrix.'
+          - !Ref DomainName
+  HydrogenRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: 
+        Fn::Join: 
+        - ""
+        - - 'hydrogen.'
+          - !Ref DomainName
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join: 
+        - ""
+        - - 'matrix.'
+          - !Ref DomainName
+  CinnyRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: 
+        Fn::Join: 
+        - ""
+        - - 'cinny.'
+          - !Ref DomainName
+      Type: CNAME
+      TTL: '300'
+      ResourceRecords:
+      - Fn::Join: 
+        - ""
+        - - 'matrix.'
+          - !Ref DomainName
+  MatrixRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref DomainName
+      Type: A
+      TTL: '300'
+      ResourceRecords:
+      - Fn::ImportValue: matrix-server-public-ip
+  MainRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: 
+        Fn::Join: 
+        - ""
+        - - 'matrix.'
+          - !Ref DomainName
+      Type: A
+      TTL: '300'
+      ResourceRecords:
+      - Fn::ImportValue: matrix-server-public-ip
+  SRVRecordSet:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: 
+        Fn::Join: 
+        - ""
+        - - '_matrix-identity._tcp.'
+          - !Ref DomainName
+      Type: SRV
+      TTL: '300'
+      ResourceRecords:
+      - 10 0 443 matrix.matrix-sandbox.net
