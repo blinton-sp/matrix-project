@@ -38,6 +38,16 @@ This is important to setup for security purposes
 
 This is important to make sure that we are using python3 for ansible
 
+# Personal Instance
+
+Can navigate to https://element.matrix-sandbox.net/#/login to create a user on the server I setup (I will probably be shutting this down in a week or so just a heads up).
+
+![image info](./matrix_login.png)
+
+![image info](./matrix-home.png)
+
+![image info](./matrix_test_space.png)
+
 # Proposed Architecture
 
 Below is a diagram of the architecture I'm proposing for a low latency, scalable setup for one or multiple Matrix servers.
