@@ -44,7 +44,7 @@ Can navigate to https://element.matrix-sandbox.net/#/login to create a user on t
 
 ![image info](./matrix_login.png)
 
-![image info](./matrix-home.png)
+![image info](./matrix_home.png)
 
 ![image info](./matrix_test_space.png)
 
