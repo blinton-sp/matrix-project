@@ -24,7 +24,9 @@ This would enable scaling up and down servers based on thresholds for key metric
 
 We would then [attach an Elastic Load Balancer to our EC2 Autoscaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html) to the EC2 Autoscaling group.  This will automate the process of routing traffic to the servers to the most optimal instances/availability zones that will in turn result in low latency for users/devices.
 
-# AWS Infrastructure Setup Instructions
+# Matrix Server Deployment Instructions
+
+## AWS Infrastructure Setup
 
 1. Clone the repository above to your computer
 2. Setup an AWS Account if you don't have one already
@@ -43,7 +45,7 @@ We would then [attach an Elastic Load Balancer to our EC2 Autoscaling Group](htt
 	- insert_hz_id_here with your hosted zone id
   	- insert_domain_name_here with your registered domain name
 
-# Matrix Ansible Deployment
+## Matrix Installation (Ansible Deployment)
 1. In the vars.yml file, fill out the following:
   	- enter in any password value for both matrix_homeserver_generic_secret_key and matrix_postgres_connection_password
   	- enter the domain you purchased under matrix_domain
