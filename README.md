@@ -48,7 +48,7 @@ The infrastructure would be composed of an [EC2 Autoscaling Group](https://conso
 
 This would enable scaling up and down servers based on thresholds for key metrics (e.g. CPU usage).  It would also ensure maximum liveness anytime usage spikes.
 
-We would then [attach an Elastic Load Balancer to our EC2 Autoscaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html) to the EC2 Autoscaling group.  This will automate the process of routing traffic to the servers to the most optimal instances/availability zones that will in turn result in low latency for users/devices.
+We would then [attach an Elastic Load Balancer to our EC2 Autoscaling Group](https://docs.aws.amazon.com/autoscaling/ec2/userguide/attach-load-balancer-asg.html) to the EC2 Autoscaling group.  This will automate the process of routing traffic to the most optimal instances/availability zones that will in turn result in low latency for users/devices.
 
 # Matrix Server Deployment Instructions
 
