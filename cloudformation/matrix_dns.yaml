@@ -156,4 +156,7 @@ Resources:
       Type: SRV
       TTL: '300'
       ResourceRecords:
-      - 10 0 443 matrix.matrix-sandbox.net
+      - Fn::Join: 
+        - ""
+        - - '10 0 443 matrix.'
+          - !Ref DomainName
